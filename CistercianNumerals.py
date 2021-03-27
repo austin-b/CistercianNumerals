@@ -6,6 +6,8 @@ GUI program to translate numbers from arabic into Cistercian numerals.
 https://en.wikipedia.org/wiki/Cistercian_numerals
 """
 
+# TODO: export functionality to separate folder
+
 #######################
 # Imports
 #######################
