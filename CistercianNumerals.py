@@ -15,6 +15,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import Menu
 from tkinter import messagebox as msg
+from time import sleep
 import sys
 
 
@@ -136,17 +137,14 @@ def draw_thousands(num):
         canvas.create_line(13, 96, 13, 126, width=3)
 
 
-def generate_number(event=None):
+def generate_number(num):
     """Processes the number and draws it on the canvas."""
     # TODO: try to find a more efficient way to process these numbers
     try:
         canvas.delete("all")    # clear canvas
 
-        num = number.get()
-
-        if len(num) > 4:
-            raise ValueError()
-
+        #if len(num) > 4:
+        #    raise ValueError()
         draw_stem()
         draw_ones(int(num[-1]))
         draw_tens(int(num[-2]))
@@ -154,8 +152,20 @@ def generate_number(event=None):
         draw_thousands(int(num[-4]))
     except IndexError:          # catches errors for above if not long enough
         pass
-    except ValueError:          # catches errors for incorrect input
-        msg.showerror("Error Box", "Only enter numbers 1-9999")
+    #except ValueError:          # catches errors for incorrect input
+    #    msg.showerror("Error Box", "Only enter numbers 1-9999")
+
+
+def generate(event=None):
+    """Gets the number from the text field and passes it on."""
+    num = number.get()
+    generate_number(num)
+
+
+def count_up():
+    for i in range(1,9999):
+        generate_number(str(i))
+        sleep(10)
 
 
 # display a message box
@@ -220,8 +230,11 @@ number = tk.StringVar()
 number_entered = ttk.Entry(input_frame, width=12, textvariable=number)
 number_entered.grid(column=0, row=1, sticky=tk.W, padx=5, pady=5)
 
-action = ttk.Button(input_frame, text="Generate", command=generate_number)
+action = ttk.Button(input_frame, text="Generate", command=generate)
 action.grid(column=1, row=1)
+
+countup = ttk.Button(input_frame, text="Count up", command=count_up)
+countup.grid(column=1, row=2)
 
 canvas = tk.Canvas(win, width=101, height=150, bg="white")
 canvas.grid(column=1, row=0, padx=40, pady=40, rowspan=2)
