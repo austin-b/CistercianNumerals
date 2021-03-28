@@ -141,6 +141,7 @@ def generate_number(num):
     """Processes the number and draws it on the canvas."""
     # TODO: try to find a more efficient way to process these numbers
     try:
+        print("printing " + num)
         canvas.delete("all")    # clear canvas
 
         #if len(num) > 4:
@@ -159,13 +160,19 @@ def generate_number(num):
 def generate(event=None):
     """Gets the number from the text field and passes it on."""
     num = number.get()
+    print("generate: printing " + num)
     generate_number(num)
 
-
+# TODO: GET THIS TO WORK
 def count_up():
+
+    def step(n):
+        number_entered.delete(1,6)
+        number_entered.insert(0, n)
+        generate()
+
     for i in range(1,9999):
-        generate_number(str(i))
-        sleep(10)
+        win.after(2000, step, str(i))
 
 
 # display a message box
