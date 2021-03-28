@@ -6,7 +6,8 @@ GUI program to translate numbers from arabic into Cistercian numerals.
 https://en.wikipedia.org/wiki/Cistercian_numerals
 """
 
-# TODO: export functionality to separate folder
+# TODO: export numeral drawign to a separate class to accomidate using
+# this class with any drawing platform
 
 #######################
 # Imports
@@ -17,6 +18,7 @@ from tkinter import Menu
 from tkinter import messagebox as msg
 from time import sleep
 import sys
+import threading
 
 
 #######################
@@ -139,41 +141,45 @@ def draw_thousands(num):
 
 def generate_number(num):
     """Processes the number and draws it on the canvas."""
-    # TODO: try to find a more efficient way to process these numbers
-    try:
-        print("printing " + num)
-        canvas.delete("all")    # clear canvas
+    print("printing " + str(num))
 
-        #if len(num) > 4:
-        #    raise ValueError()
-        draw_stem()
-        draw_ones(int(num[-1]))
-        draw_tens(int(num[-2]))
-        draw_hundreds(int(num[-3]))
-        draw_thousands(int(num[-4]))
-    except IndexError:          # catches errors for above if not long enough
-        pass
-    #except ValueError:          # catches errors for incorrect input
-    #    msg.showerror("Error Box", "Only enter numbers 1-9999")
+    canvas.delete("all")    # clear canvas
+
+    tens, ones = divmod(num, 10)
+    hundreds, tens = divmod(tens, 10)
+    thousands, hundreds = divmod(hundreds, 10)
+
+    draw_stem()
+    draw_ones(ones)
+    draw_tens(tens)
+    draw_hundreds(hundreds)
+    draw_thousands(thousands)
 
 
 def generate(event=None):
     """Gets the number from the text field and passes it on."""
-    num = number.get()
-    print("generate: printing " + num)
-    generate_number(num)
+    try:
+        num = number.get()
 
-# TODO: GET THIS TO WORK
-def count_up():
+        if len(num) > 4:
+            raise ValueError()
 
-    def step(n):
-        number_entered.delete(1,6)
-        number_entered.insert(0, n)
-        generate()
+        generate_number(int(num))
+    except (ValueError, TypeError):          # catches errors for incorrect input
+        msg.showerror("Error Box", "Only enter numbers 1-9999")
 
-    for i in range(1,9999):
-        win.after(2000, step, str(i))
 
+# count up has to start a thread because using either sleep() or
+# win.after() does not accomplish what I want it to
+def count_up(i=1):
+
+    def count_up_thread():
+        for i in range(1,9999):
+            generate_number(i)
+            sleep(1)
+
+    thread = threading.Thread(target=count_up_thread)
+    thread.start()
 
 # display a message box
 def about():
