@@ -162,6 +162,7 @@ def generate_number_cng(num):
     num_gen = cng(canvas2.winfo_width(), canvas2.winfo_height())
 
     for line in num_gen.draw_number(num):
+        print("print line: " + str(line))
         x1, y1 = line[0]
         x2, y2 = line[1]
         canvas2.create_line(x1, y1, x2, y2, width=3)
@@ -177,8 +178,8 @@ def generate(event=None):
 
         generate_number(int(num))
         generate_number_cng(int(num))
-    except (ValueError, TypeError):          # catches errors for incorrect input
-        msg.showerror("Error Box", "Only enter numbers 1-9999")
+    except (ValueError, TypeError) as e:          # catches errors for incorrect input
+        msg.showerror("Error Box", "Only enter numbers 1-9999.\n" + e.message)
 
 
 # count up has to start a thread because using either sleep() or
@@ -275,7 +276,7 @@ canvas2.grid(column=2, row=0, padx=40, pady=40, rowspan=2)
 number_entered.focus()
 
 # bind enter key to generate_number
-win.bind('<Return>', generate_number)
+win.bind('<Return>', generate)
 
 #######################
 # Start GUI
