@@ -7,6 +7,12 @@ Digits are based on a horizontal or vertical stave, with the position of the dig
 
 CistercianNumerals.py contains a class which generates such numbers, CistercianNumerals_gui.py contains a Tkinter application used for testing and demonstration.
 
+### Example
+
+Screenshot of CistercianNumerals_gui application -- hardcoded points are on left number, while right number is generated based on height and width with the horizontal flag set:
+
+![example](./Example.PNG)
+
 ### Dependencies
 
 None. :)
@@ -32,3 +38,15 @@ padx:       x-axis padding
 pady:       y-axis padding
 
 draw_number: Returns list of tuples of points to draw lines of form: [((x1,y1),(x2,y2)), ((x1,y1),(x2,y2)), ...]
+
+In the example above, the output of `cng.draw_number(1234)` was used with Tkinter's `canvas.create_line()` method to draw the lines.
+
+### Diagrams
+
+I am sorry for the poor quality of these diagrams, but these were used in the creation of this class:
+
+Vertical:
+![vertical diagram](./NumeralDiagram.PNG)
+
+Horizontal:
+![vertical diagram](./NumeralDiagram_Horizontal.PNG)
