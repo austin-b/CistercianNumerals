@@ -9,10 +9,6 @@ CistercianNumerals.py contains a class which generates such numbers, CistercianN
 
 ### Example
 
-A brief summary of the numerals can be seen here:
-
-![Cistercian numerals](https://en.wikipedia.org/wiki/Cistercian_numerals#/media/File:Cistercian_digits_(vertical\).svg)
-
 Screenshot of CistercianNumerals_gui application -- hardcoded points are on left number, while right number is generated based on height and width with the horizontal flag set:
 
 ![example](./Example.PNG)
