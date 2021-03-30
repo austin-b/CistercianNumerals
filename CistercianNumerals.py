@@ -11,7 +11,7 @@ class CistercianNumeralGenerator:
 
         width:      x-axis
         height:     y-axis
-        flipped:    set to true if origin is at bottom left
+        flipped:    set to true if origin is at bottom left, default to top left
         horizontal: set to true for numerals generated horizontally
         padx:       x-axis padding
         pady:       y-axis padding
