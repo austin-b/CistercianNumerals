@@ -5,9 +5,13 @@ Cistercian Numeral Generator
 
 Digits are based on a horizontal or vertical stave, with the position of the digit on the stave indicating its place value (units, tens, hundreds or thousands). These digits are compounded on a single stave to indicate more complex numbers. The Cistercians eventually abandoned the system in favor of the Arabic numerals, but marginal use outside the order continued until the early twentieth century." - [wikipedia](https://en.wikipedia.org/wiki/Cistercian_numerals)
 
-CistercianNumerals.py contains a class which generates such numbers, CistercianNumerals_gui.py contains a Tkinter application used for testing and demonstration.
+CistercianNumerals.py contains a class which generates such numbers, CistercianNumerals_gui.py contains a Tkinter application used for testing and demonstration. As demonstrated in the example on the left below, the ones digit is in the top right position, the tens digit in the top left, the hundreds digit in the bottom right, and the thousands digit in the bottom left. In the horizontal version, the numeral is shifted 90* counterclockwise.
 
 ### Example
+
+A brief summary of the numerals can be seen here:
+
+![Cistercian numerals](https://en.wikipedia.org/wiki/Cistercian_numerals#/media/File:Cistercian_digits_(vertical\).svg)
 
 Screenshot of CistercianNumerals_gui application -- hardcoded points are on left number, while right number is generated based on height and width with the horizontal flag set:
 
