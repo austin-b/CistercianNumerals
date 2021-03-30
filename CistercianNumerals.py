@@ -6,7 +6,8 @@
 from math import ceil, floor
 
 class CistercianNumeralGenerator:
-    """Class for generating Cistercian numerals from Arabic numerals. Can only be used to generate numbers 1-9999.
+    """
+        Class for generating Cistercian numerals from Arabic numerals. Can only be used to generate numbers 1-9999.
 
         width:      x-axis
         height:     y-axis
@@ -199,8 +200,7 @@ class CistercianNumeralGenerator:
 
     def draw_number(self, num):
         """
-        Returns list of tuples of points to draw lines.
-        Of form: [((x1,y1),(x2,y2)), ((x1,y1),(x2,y2)), ...]
+        Returns list of tuples of points to draw lines of form: [((x1,y1),(x2,y2)), ((x1,y1),(x2,y2)), ...]
         """
         if not isinstance(num, int) or num < 0 or num > 9999:
             raise ValueError("Num must be an integer between 0 and 9999.")
