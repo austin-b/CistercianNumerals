@@ -3,6 +3,8 @@
 # Class for implementing and drawing aravis numerals.
 #######################
 
+from math import ceil, floor
+
 class CistercianNumeralGenerator:
     """Class for implementing and drawing arabic numerals."""
 
@@ -21,30 +23,74 @@ class CistercianNumeralGenerator:
     # TODO: make a diagram for how these are spread out
     def generate_points(self):
 
-        centerline = 51
-        ones_hundreds = 88
-        tens_thousands = 13
+        if self.horizontal:
 
-        a_line = 26
-        b_line = 56
-        c_line = 96
-        d_line = 126
+            if self.flipped:
+                ones_hundreds = self.height - self.pady
+                tens_thousands = self.pady
+            else:
+                ones_hundreds = self.pady
+                tens_thousands = self.height - self.pady
 
-        # grouping by columns
-        self.stem_a = (centerline, a_line)
-        self.stem_b = (centerline, b_line)
-        self.stem_c = (centerline, c_line)
-        self.stem_d = (centerline, d_line)
+            centerline = ceil((ones_hundreds + tens_thousands)/2)
 
-        self.ones_a = (ones_hundreds, a_line)
-        self.ones_b = (ones_hundreds, b_line)
-        self.hundreds_c = (ones_hundreds, c_line)
-        self.hundreds_d = (ones_hundreds, d_line)
+            a_line = self.padx
+            d_line = self.width - self.padx
+            b_line = floor(a_line + ((d_line - a_line) * .35))
+            c_line = ceil(a_line + ((d_line - a_line) * .65))
 
-        self.tens_a = (tens_thousands, a_line)
-        self.tens_b = (tens_thousands, b_line)
-        self.thousands_c = (tens_thousands, c_line)
-        self.thousands_d = (tens_thousands, d_line)
+            self.stem_a = (a_line, centerline)
+            self.stem_b = (b_line, centerline)
+            self.stem_c = (c_line, centerline)
+            self.stem_d = (d_line, centerline)
+
+            self.ones_a = (a_line, ones_hundreds)
+            self.ones_b = (b_line, ones_hundreds)
+            self.hundreds_c = (c_line, ones_hundreds)
+            self.hundreds_d = (d_line, ones_hundreds)
+
+            self.tens_a = (a_line, tens_thousands)
+            self.tens_b = (b_line, tens_thousands)
+            self.thousands_c = (c_line, tens_thousands)
+            self.thousands_d = (d_line, tens_thousands)
+        else:
+            ones_hundreds = self.width - self.padx
+            tens_thousands = self.padx
+            centerline = ceil((ones_hundreds + tens_thousands)/2)
+
+            if self.flipped:
+                a_line = self.height - self.pady
+                d_line = self.pady
+            else:
+                a_line = self.pady
+                d_line = self.height - self.pady
+
+            b_line = floor(a_line + ((d_line - a_line) * .35))
+            c_line = ceil(a_line + ((d_line - a_line) * .65))
+
+            self.stem_a = (centerline, a_line)
+            self.stem_b = (centerline, b_line)
+            self.stem_c = (centerline, c_line)
+            self.stem_d = (centerline, d_line)
+
+            self.ones_a = (ones_hundreds, a_line)
+            self.ones_b = (ones_hundreds, b_line)
+            self.hundreds_c = (ones_hundreds, c_line)
+            self.hundreds_d = (ones_hundreds, d_line)
+
+            self.tens_a = (tens_thousands, a_line)
+            self.tens_b = (tens_thousands, b_line)
+            self.thousands_c = (tens_thousands, c_line)
+            self.thousands_d = (tens_thousands, d_line)
+
+        print("centerline: " + str(centerline))
+        print("ones_hundreds: " + str(ones_hundreds))
+        print("tens_thousands: " + str(tens_thousands))
+
+        print("a_line: " + str(a_line))
+        print("b_line: " + str(b_line))
+        print("c_line: " + str(c_line))
+        print("d_line: " + str(d_line))
 
 
     def draw_stem(self):

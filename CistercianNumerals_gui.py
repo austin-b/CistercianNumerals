@@ -159,7 +159,7 @@ def generate_number(num):
 def generate_number_cng(num):
     canvas2.delete("all")
 
-    num_gen = cng(canvas2.winfo_width(), canvas2.winfo_height())
+    num_gen = cng(150, 100, horizontal=True, padx=26, pady=13)
 
     for line in num_gen.draw_number(num):
         print("print line: " + str(line))
@@ -265,7 +265,7 @@ countup.grid(column=1, row=2)
 canvas = tk.Canvas(win, width=101, height=150, bg="white")
 canvas.grid(column=1, row=0, padx=40, pady=40, rowspan=2)
 
-canvas2 = tk.Canvas(win, width=101, height=150, bg="white")
+canvas2 = tk.Canvas(win, width=150, height=100, bg="white")
 canvas2.grid(column=2, row=0, padx=40, pady=40, rowspan=2)
 
 ######
