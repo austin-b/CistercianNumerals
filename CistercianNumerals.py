@@ -5,6 +5,7 @@
 
 from math import ceil, floor
 
+
 class CistercianNumeralGenerator:
     """
         Class for generating Cistercian numerals from Arabic numerals. Can only be used to generate numbers 1-9999.
@@ -17,7 +18,7 @@ class CistercianNumeralGenerator:
         pady:       y-axis padding
     """
 
-    def __init__(self, width, height, flipped=False, horizontal=False, padx=0, \
+    def __init__(self, width, height, flipped=False, horizontal=False, padx=0,
                  pady=0):
         """
             width:      x-axis
@@ -36,8 +37,8 @@ class CistercianNumeralGenerator:
 
         self.generate_points()
 
-
     # TODO: make a diagram for how these are spread out
+
     def generate_points(self):
         """Should not be called directly, determines points used for number generation."""
         if self.horizontal:
@@ -99,11 +100,9 @@ class CistercianNumeralGenerator:
             self.thousands_c = (tens_thousands, c_line)
             self.thousands_d = (tens_thousands, d_line)
 
-
     def draw_stem(self):
         """Returns set of points used to draw stem of numeral."""
         return (self.stem_a, self.stem_d)
-
 
     def draw_ones(self, num):
         """Returns set of points used to draw ones digit of numeral."""
@@ -124,9 +123,8 @@ class CistercianNumeralGenerator:
         elif num == 8:
             return [(self.stem_b, self.ones_b), (self.ones_a, self.ones_b)]
         elif num == 9:
-            return [(self.stem_a, self.ones_a), (self.stem_b, self.ones_b), \
+            return [(self.stem_a, self.ones_a), (self.stem_b, self.ones_b),
                     (self.ones_a, self.ones_b)]
-
 
     def draw_tens(self, num):
         """Returns set of points used to draw tens digit of numeral."""
@@ -147,9 +145,8 @@ class CistercianNumeralGenerator:
         elif num == 8:
             return [(self.stem_b, self.tens_b), (self.tens_a, self.tens_b)]
         elif num == 9:
-            return [(self.stem_a, self.tens_a), (self.stem_b, self.tens_b), \
+            return [(self.stem_a, self.tens_a), (self.stem_b, self.tens_b),
                     (self.tens_a, self.tens_b)]
-
 
     def draw_hundreds(self, num):
         """Returns set of points used to draw hundreds digit of numeral."""
@@ -170,9 +167,8 @@ class CistercianNumeralGenerator:
         elif num == 8:
             return [(self.stem_c, self.hundreds_c), (self.hundreds_c, self.hundreds_d)]
         elif num == 9:
-            return [(self.stem_c, self.hundreds_c), (self.stem_d, self.hundreds_d), \
+            return [(self.stem_c, self.hundreds_c), (self.stem_d, self.hundreds_d),
                     (self.hundreds_c, self.hundreds_d)]
-
 
     def draw_thousands(self, num):
         """Returns set of points used to draw thousands digit of numeral."""
@@ -194,9 +190,8 @@ class CistercianNumeralGenerator:
         elif num == 8:
             return [(self.stem_c, self.thousands_c), (self.thousands_c, self.thousands_d)]
         elif num == 9:
-            return [(self.stem_c, self.thousands_c), (self.stem_d, self.thousands_d), \
+            return [(self.stem_c, self.thousands_c), (self.stem_d, self.thousands_d),
                     (self.thousands_c, self.thousands_d)]
-
 
     def draw_number(self, num):
         """
@@ -211,10 +206,14 @@ class CistercianNumeralGenerator:
 
         lines = []
         lines.append(self.draw_stem())
-        if ones > 0: lines.append(self.draw_ones(ones))
-        if tens > 0: lines.append(self.draw_tens(tens))
-        if hundreds > 0: lines.append(self.draw_hundreds(hundreds))
-        if thousands > 0: lines.append(self.draw_thousands(thousands))
+        if ones > 0:
+            lines.append(self.draw_ones(ones))
+        if tens > 0:
+            lines.append(self.draw_tens(tens))
+        if hundreds > 0:
+            lines.append(self.draw_hundreds(hundreds))
+        if thousands > 0:
+            lines.append(self.draw_thousands(thousands))
 
         finalized_lines = []
         for i in lines:
